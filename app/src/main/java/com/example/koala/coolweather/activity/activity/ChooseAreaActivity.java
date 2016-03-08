@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -46,7 +47,6 @@ public class ChooseAreaActivity extends AppCompatActivity {
 
     private Province selectedProvince;
     private City selectedCity;
-    private County selectedCounty;
     private int currentLevel;
 
     @Override
@@ -68,6 +68,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
                     queryCities();
                 }else if(currentLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
+                    Log.d("County", "query Counties begin");
                     queryCounties();
                 }
             }
@@ -110,8 +111,10 @@ public class ChooseAreaActivity extends AppCompatActivity {
     }
 
     private void queryCounties(){
+        Log.d("County", "loadCounties begin");
         countyList = coolWeatherDB.loadCounties(selectedCity.getId());
         if (countyList.size() > 0){
+            Log.d("County", "queryCounty from DB begin");
             dataList.clear();
             for (County county : countyList){
                 dataList.add(county.getCountyName());
@@ -121,6 +124,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
             titleText.setText(selectedCity.getCityName());      //当前county所属city
             currentLevel = LEVEL_COUNTY;
         }else {
+            Log.d("County", "queryFromServer for County begin");
             queryFromServer(selectedCity.getCityCode(), "county");
         }
     }
@@ -146,6 +150,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
                     result = Utility.handleCityResponse(coolWeatherDB, response,
                             selectedProvince.getId());
                 }else {
+                    Log.d("County", "handleCountyResponse begin");
                     result = Utility.handleCountyResponse(coolWeatherDB, response,
                             selectedCity.getId());
                 }
