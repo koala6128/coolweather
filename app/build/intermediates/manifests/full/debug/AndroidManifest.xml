@@ -25,6 +25,10 @@
         </activity>
         <activity android:name="com.example.koala.coolweather.activity.activity.WeatherActivity" >
         </activity>
+
+        <service android:name="com.example.koala.coolweather.activity.service.AutoUpdateService" />
+
+        <receiver android:name="com.example.koala.coolweather.activity.receiver.AutoUpdateReceiver" />
     </application>
 
 </manifest>
