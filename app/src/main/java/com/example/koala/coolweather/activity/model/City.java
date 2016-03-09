@@ -5,10 +5,10 @@ package com.example.koala.coolweather.activity.model;
  */
 public class City {
 
-    private int id;
-    private String cityName;
-    private String cityCode;
-    private int provinceId;
+    private int id;     //city在表中的编号
+    private String cityName;    //city名称
+    private String cityCode;    //city代号
+    private int provinceId;     //city对应省的编号
 
     public int getId(){
         return id;

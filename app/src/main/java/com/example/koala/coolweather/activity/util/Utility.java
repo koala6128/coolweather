@@ -41,6 +41,7 @@ public class Utility {
         return false;
     }
 
+    //解析http请求返回的city数据，并写入数据库
     public static boolean handleCityResponse(CoolWeatherDB coolWeatherDB, String response,
                                              int provinceId){
         if (!TextUtils.isEmpty(response)){
@@ -61,6 +62,7 @@ public class Utility {
         return false;
     }
 
+    //解析http请求返回的county数据，并写入数据库
     public static boolean handleCountyResponse(CoolWeatherDB coolWeatherDB, String response,
                                                int cityId){
 
@@ -82,7 +84,7 @@ public class Utility {
         return false;
     }
 
-    //解析服务器返回的JSON数据，并存储到本地
+    //解析服务器返回的天气JSON数据，并存储到本地
     public static void handleWeatherResponse(Context context, String response){
 
         try {
@@ -100,6 +102,8 @@ public class Utility {
         }
     }
 
+
+    //将天气数据存储到本地sharedPreference
     public static void saveWeatherInfo(Context context, String cityName, String weatherCode,
                                        String temp1, String temp2, String weatherDesp,
                                        String publishTime){

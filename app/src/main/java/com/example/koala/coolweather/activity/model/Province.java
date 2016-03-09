@@ -5,9 +5,9 @@ package com.example.koala.coolweather.activity.model;
  */
 public class Province {
 
-    private int id;
-    private String provinceName;
-    private String provinceCode;
+    private int id;     //province在表中的编号
+    private String provinceName;        //省名
+    private String provinceCode;        //省代号
 
     public int getId(){
         return id;

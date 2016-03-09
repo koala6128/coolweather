@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\Android_Studio_Projects\\CoolWeather\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
+        "source": "D:\\Android_Studio_Projects\\CoolWeather\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
         "merged": "E:\\Android_Studio\\projects\\CoolWeather\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi-v4\\ic_launcher.png",
         "source": "E:\\Android_Studio\\projects\\CoolWeather\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
     }
