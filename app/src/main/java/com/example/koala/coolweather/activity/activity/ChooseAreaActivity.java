@@ -51,6 +51,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
     private Province selectedProvince;
     private City selectedCity;
     private int currentLevel;
+    private boolean isFromWeatherActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -58,8 +59,9 @@ public class ChooseAreaActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.choose_area);
 
+        isFromWeatherActivity = getIntent().getBooleanExtra("from_weather_activity", false);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("city_selected", false)){    //false为默认值，city_selected在查询天气信息后由saveWeatherInfo中赋值
+        if (preferences.getBoolean("city_selected", false) && !isFromWeatherActivity){    //false为默认值，city_selected在查询天气信息后由saveWeatherInfo中赋值
             Intent intent = new Intent(this, WeatherActivity.class);
             startActivity(intent);
             finish();
@@ -225,6 +227,10 @@ public class ChooseAreaActivity extends AppCompatActivity {
         }else if (currentLevel == LEVEL_CITY){
             queryProvinces();
         }else {
+            if (isFromWeatherActivity){
+                Intent intent = new Intent(this, WeatherActivity.class);
+                startActivity(intent);
+            }
             finish();
         }
     }
