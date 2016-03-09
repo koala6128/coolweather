@@ -59,7 +59,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
         setContentView(R.layout.choose_area);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (preferences.getBoolean("city_selected", false)){
+        if (preferences.getBoolean("city_selected", false)){    //false为默认值，city_selected在查询天气信息后由saveWeatherInfo中赋值
             Intent intent = new Intent(this, WeatherActivity.class);
             startActivity(intent);
             finish();
@@ -175,7 +175,7 @@ public class ChooseAreaActivity extends AppCompatActivity {
                 if (result){
                     runOnUiThread(new Runnable() {
                         @Override
-                        public void run() {
+                        public void run() {     //返回主线程
                             closeProgressDialog();
                             if ("province" .equals(type)){
                                 queryProvinces();

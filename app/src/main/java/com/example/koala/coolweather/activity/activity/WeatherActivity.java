@@ -14,7 +14,6 @@ import com.example.koala.coolweather.activity.util.HttpCallbackListener;
 import com.example.koala.coolweather.activity.util.HttpUtil;
 import com.example.koala.coolweather.activity.util.Utility;
 
-import java.net.HttpURLConnection;
 
 /**
  * Created by LX on 2016/3/9.
@@ -57,15 +56,17 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+    //根据县级代号查询天气代号
     private void queryWeatherCode(String countyCode){
         String address = "http://www.weather.com.cn/data/list3/city" + countyCode + ".xml";
-        queryFromServer(address, "countyCode");
+        queryFromServer(address, "countyCode");     //此方法与ChooseAreaActivity中的方法同名
 
     }
 
+    //根据天气代号查询天气信息
     private void queryWeatherInfo(String weatherCode){
         String address = "http://www.weather.com.cn/data/cityinfo/" + weatherCode + ".html";
-        queryFromServer(address, "weatherCode");
+        queryFromServer(address, "weatherCode");     //此方法与ChooseAreaActivity中的方法同名
     }
 
     private void queryFromServer(final String address, final String type){
@@ -73,13 +74,15 @@ public class WeatherActivity extends AppCompatActivity {
         HttpUtil.sendHttpRequest(address, new HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
+
+                //从服务器返回结果response中解析天气代号
                 if ("countyCode".equals(type)) {
                     String[] array = response.split("\\|");
                     if (array != null && array.length == 2) {
                         String weatherCode = array[1];
                         queryWeatherInfo(weatherCode);
                     }
-                } else if ("weatherCode".equals(type)) {
+                } else if ("weatherCode".equals(type)) {        //从服务器返回结果response中解析天气信息
                     Utility.handleWeatherResponse(WeatherActivity.this, response);
                     runOnUiThread(new Runnable() {
                         @Override
